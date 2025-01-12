@@ -12,10 +12,10 @@ private int id;
 private String full_name;
 @NotEmpty(message = "The age shouldn't be empty")
 @Pattern(regexp = "\\d\\d\\d\\d", message = "Year should be like this format: 1999")
-private int birth_age;
+private int birth_year;
 
-    public Person(int birth_age, String full_name, int id) {
-        this.birth_age = birth_age;
+    public Person(int birth_year, String full_name, int id) {
+        this.birth_year = birth_year;
         this.full_name = full_name;
         this.id = id;
     }
@@ -24,12 +24,12 @@ private int birth_age;
     }
 
 
-    public int getBirth_age() {
-        return birth_age;
+    public int getBirth_year() {
+        return birth_year;
     }
 
-    public void setBirth_age(int birth_age) {
-        this.birth_age = birth_age;
+    public void setBirth_year(int birth_year) {
+        this.birth_year = birth_year;
     }
 
     public String getFull_name() {
