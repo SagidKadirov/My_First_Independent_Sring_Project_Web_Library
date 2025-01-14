@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.kadirov.firstproject.models.Book;
+import ru.kadirov.firstproject.models.Person;
 
 import java.util.List;
 
@@ -30,10 +31,16 @@ public class BookDAO {
                 .orElse(null);
     }
     public void save(Book book){
-        jdbcTemplate.update("INSERT INTO book(book_name, book_author,book_year) VALUES ?,?,?",book.getBook_name(),book.getBook_author(),book.getBook_year());
+        jdbcTemplate.update("INSERT INTO book(book_name, book_author,book_year) VALUES (?,?,?)",book.getBook_name(),book.getBook_author(),book.getBook_year());
     }
     public void update(int id, Book updatedBook){
         jdbcTemplate.update("UPDATE book SET book_name=?, book_author=?, book_year=? WHERE book_id=?", updatedBook.getBook_name(), updatedBook.getBook_author(), updatedBook.getBook_year(),id);
+    }
+    public void addPerson(Person person, Book book){
+        jdbcTemplate.update("UPDATE book SET person_id=? WHERE book_id=?",person.getId(),book.getBook_id());
+    }
+    public void deletePerson(Book book){
+        jdbcTemplate.update("UPDATE book SET person_id=NULL WHERE book_id=?", book.getBook_id());
     }
     public void delete(int id){
         jdbcTemplate.update("DELETE FROM book WHERE book_id=?", id);

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 
 public class Book {
     private int book_id;
+
     private Integer person_id;
     @NotEmpty(message = "Book name shouldn't be empty")
     @Size(min = 1, max = 200, message = "Name size should be between 1 and 200 characters")

@@ -9,14 +9,14 @@ private int id;
 @NotEmpty(message = "The name shouldn't be empty")
 @Size(min = 1, max = 200, message = "The name size should be between 1 and 200 characters")
 @Pattern(regexp = "[A-Z]\\w+ [A-Z]\\w+ [A-Z]\\w+", message = "The full name should be like this format: Kadirov Sagid Timurovich")
-private String full_name;
+private String fullName;
 @NotEmpty(message = "The age shouldn't be empty")
 @Pattern(regexp = "\\d\\d\\d\\d", message = "Year should be like this format: 1999")
-private int birth_year;
+private int birthYear;
 
-    public Person(int birth_year, String full_name, int id) {
-        this.birth_year = birth_year;
-        this.full_name = full_name;
+    public Person(int birthYear, String fullName, int id) {
+        this.birthYear = birthYear;
+        this.fullName = fullName;
         this.id = id;
     }
 
@@ -24,20 +24,20 @@ private int birth_year;
     }
 
 
-    public int getBirth_year() {
-        return birth_year;
+    public int getBirthYear() {
+        return birthYear;
     }
 
-    public void setBirth_year(int birth_year) {
-        this.birth_year = birth_year;
+    public void setBirthYear(int birthYear) {
+        this.birthYear = birthYear;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFull_name( String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public int getId() {
