@@ -5,67 +5,59 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class Book {
-    private int book_id;
+    private int id;
 
-    private Integer person_id;
     @NotEmpty(message = "Book name shouldn't be empty")
     @Size(min = 1, max = 200, message = "Name size should be between 1 and 200 characters")
-    private String book_name;
+    private String title;
+
     @NotEmpty(message = "Author shouldn't be empty")
     @Size(min = 1, max = 200, message = "Author name size should be between 1 and 200 characters")
-    private String book_author;
+    private String author;
+
     @NotEmpty(message = "book year shouldn't be empty")
     @Pattern(regexp = "\\d\\d\\d\\d", message = "The year should be like this format: 1999")
-    private int book_year;
+    private int year;
 
     public Book() {
     }
 
-    public Book(String book_author, int book_id, String book_name, int book_year, Integer person_id) {
-        this.book_author = book_author;
-        this.book_id = book_id;
-        this.book_name = book_name;
-        this.book_year = book_year;
-        this.person_id = person_id;
+    public Book(String author, int id, String title, int year) {
+        this.author = author;
+        this.id = id;
+        this.title = title;
+        this.year = year;
     }
 
-    public String getBook_author() {
-        return book_author;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setBook_author (String book_author) {
-        this.book_author = book_author;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public int getBook_id() {
-        return book_id;
+    public int getId() {
+        return id;
     }
 
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getBook_name() {
-        return book_name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBook_name(String book_name) {
-        this.book_name = book_name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public int getBook_year() {
-        return book_year;
+    public int getYear() {
+        return year;
     }
 
-    public void setBook_year(int book_year) {
-        this.book_year = book_year;
-    }
-
-    public Integer getPerson_id() {
-        return person_id;
-    }
-
-    public void setPerson_id(Integer person_id) {
-        this.person_id = person_id;
+    public void setYear(int year) {
+        this.year = year;
     }
 }
