@@ -8,7 +8,7 @@ public class Person {
 private int id;
 
 @NotEmpty(message = "The name shouldn't be empty")
-@Size(min = 1, max = 200, message = "The name size should be between 1 and 200 characters")
+@Size(min = 1, max = 100, message = "The name size should be between 1 and 200 characters")
 @Pattern(regexp = "[A-Z]\\w+ [A-Z]\\w+ [A-Z]\\w+", message = "The full name should be like this format: Kadirov Sagid Timurovich")
 private String fullName;
 

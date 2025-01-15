@@ -8,11 +8,11 @@ public class Book {
     private int id;
 
     @NotEmpty(message = "Book name shouldn't be empty")
-    @Size(min = 1, max = 200, message = "Name size should be between 1 and 200 characters")
+    @Size(min = 1, max = 100, message = "Name size should be between 1 and 200 characters")
     private String title;
 
     @NotEmpty(message = "Author shouldn't be empty")
-    @Size(min = 1, max = 200, message = "Author name size should be between 1 and 200 characters")
+    @Size(min = 1, max = 100, message = "Author name size should be between 1 and 200 characters")
     private String author;
 
     @NotEmpty(message = "book year shouldn't be empty")

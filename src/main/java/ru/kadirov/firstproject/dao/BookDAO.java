@@ -9,6 +9,7 @@ import ru.kadirov.firstproject.models.Book;
 import ru.kadirov.firstproject.models.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @PropertySource("classpath:database.properties")
@@ -25,24 +26,32 @@ public class BookDAO {
     }
 
     public Book show(int id){
-        return jdbcTemplate.query("SELECT * FROM book WHERE book_id=?", new Object[]{id},new BeanPropertyRowMapper<>(Book.class))
+        return jdbcTemplate.query("SELECT * FROM book WHERE id=?", new Object[]{id},new BeanPropertyRowMapper<>(Book.class))
                 .stream()
                 .findAny()
                 .orElse(null);
     }
     public void save(Book book){
-        jdbcTemplate.update("INSERT INTO book(book_name, book_author,book_year) VALUES (?,?,?)",book.getTitle(),book.getAuthor(),book.getYear());
+        jdbcTemplate.update("INSERT INTO book(title, author, year) VALUES (?, ?, ?)",book.getTitle(),book.getAuthor(),book.getYear());
     }
     public void update(int id, Book updatedBook){
-        jdbcTemplate.update("UPDATE book SET book_name=?, book_author=?, book_year=? WHERE book_id=?", updatedBook.getTitle(), updatedBook.getAuthor(), updatedBook.getYear(),id);
-    }
-    public void addPerson(Person person, Book book){
-        jdbcTemplate.update("UPDATE book SET person_id=? WHERE book_id=?",person.getId(),book.getId());
-    }
-    public void deletePerson(Book book){
-        jdbcTemplate.update("UPDATE book SET person_id=NULL WHERE book_id=?", book.getId());
+        jdbcTemplate.update("UPDATE book SET title=?, author=?, year=? WHERE id=?", updatedBook.getTitle(), updatedBook.getAuthor(), updatedBook.getYear(), id);
     }
     public void delete(int id){
-        jdbcTemplate.update("DELETE FROM book WHERE book_id=?", id);
+        jdbcTemplate.update("DELETE FROM book WHERE id=?", id);
+    }
+
+    public Optional<Person> getBookOwner(int id){
+        return jdbcTemplate.query("SELECT person.* FROM book JOIN person ON book.person_id=person.id WHERE book.id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
+                .stream().
+                findAny();
+    }
+
+    public void release(int id){
+        jdbcTemplate.update("UPDATE book SET person_id=NULL WHERE id=?",id);
+    }
+
+    public void assign(int id, Person selectedPerson){
+        jdbcTemplate.update("UPDATE book SET person_id=? WHERE id=?",selectedPerson.getId(), id);
     }
 }
