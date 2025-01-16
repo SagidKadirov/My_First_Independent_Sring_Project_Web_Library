@@ -16,7 +16,6 @@ public class Book {
     private String author;
 
     @NotEmpty(message = "book year shouldn't be empty")
-    @Pattern(regexp = "\\d\\d\\d\\d", message = "The year should be like this format: 1999")
     private int year;
 
     public Book() {
