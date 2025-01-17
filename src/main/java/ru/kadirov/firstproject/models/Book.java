@@ -1,5 +1,6 @@
 package ru.kadirov.firstproject.models;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -15,16 +16,15 @@ public class Book {
     @Size(min = 1, max = 100, message = "Author name size should be between 1 and 200 characters")
     private String author;
 
-    @NotEmpty(message = "book year shouldn't be empty")
+    @Min(value=1000, message = "Year of production must be older than 1500")
     private int year;
 
     public Book() {
     }
 
-    public Book(String author, int id, String title, int year) {
-        this.author = author;
-        this.id = id;
+    public Book(String title, String author, int year) {
         this.title = title;
+        this.author = author;
         this.year = year;
     }
 

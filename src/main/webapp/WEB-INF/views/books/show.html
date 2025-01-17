@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <title>Show book</title>
 </head>
 <body>
@@ -10,7 +11,7 @@
 <div th:if="${owner}">
     <span>The book has been taken by: </span><span th:text="${owner.getFullName()}">Owner name</span>
 
-    <form th:mathod="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
+    <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
         <input type="submit" value="Release the book"/>
     </form>
 </div>

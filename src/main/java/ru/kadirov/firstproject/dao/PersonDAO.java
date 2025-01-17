@@ -43,12 +43,12 @@ public class PersonDAO {
     }
 
     public Optional<Person> getPersonByFullName(String fullName){
-        return jdbcTemplate.query("SELECT * FROM person WHERE fullname=?",new Object[]{fullName},new BeanPropertyRowMapper<>(Person.class))
+        return jdbcTemplate.query("SELECT * FROM person WHERE full_name=?",new Object[]{fullName},new BeanPropertyRowMapper<>(Person.class))
                 .stream()
                 .findAny();
 }
 public List<Book> getBooksByPersonId(int id){
-        return jdbcTemplate.query("SELECT * FROM person WHERE person_id=?", new Object[]{id},new BeanPropertyRowMapper<>(Book.class));
+        return jdbcTemplate.query("SELECT * FROM book WHERE person_id=?", new Object[]{id},new BeanPropertyRowMapper<>(Book.class));
 }
 
 }
